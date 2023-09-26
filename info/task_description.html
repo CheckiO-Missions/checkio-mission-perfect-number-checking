@@ -1,0 +1,40 @@
+<!-- Describe task in general -->
+
+<p>
+    A perfect number is a positive integer that is equal to the sum of its proper divisors, excluding itself. For example, 28 is a perfect number because its divisors are 1, 2, 4, 7, and 14, and their sum is 28. 
+</p>
+
+<!-- <p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
+</p> -->
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input:</strong> Integer <span translate="no">({% if is_js %}number{% else %}int{% endif %})</span>.
+</p>
+
+<p>
+    <strong>Output:</strong> Logic value <span translate="no">(bool{% if is_js %}ean{% endif %})</span>. 
+</p>
+
+<p>
+    <strong>Examples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<p class="for_info_only">
+    <strong>How it’s used:</strong>
+    <i>perfect numbers have a historical significance in number theory and have been studied in various mathematical and mystical contexts. This function could be useful in mathematical research, cryptography, or just general problem-solving.</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Precondition:</strong>
+    <ul>
+    <li><i>1 <= n <= 10<sup>8</sup> </i></li>
+    </ul>
+</p>

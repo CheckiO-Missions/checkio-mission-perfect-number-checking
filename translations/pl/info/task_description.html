@@ -1,0 +1,40 @@
+<!-- Describe task in general -->
+
+<p>
+    Liczba doskonała to dodatnia liczba całkowita, która jest równa sumie swoich dzielników właściwych, z wyłączeniem samej siebie. Na przykład, 28 jest liczbą doskonałą, ponieważ jej dzielnikami są 1, 2, 4, 7 i 14, a ich suma wynosi 28. 
+</p>
+
+<!-- <p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
+</p> -->
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Wejście:</strong> Liczba całkowita <span>({% if is_js %}number{% else %}int{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Wyjście:</strong> Wartość logiczna <span>(bool{% if is_js %}ean{% endif %})</span>. 
+</p>
+
+<p>
+    <strong>Przykłady:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<p class="for_info_only">
+    <strong>Jak jest używany:</strong>
+    <i>liczby doskonałe mają historyczne znaczenie w teorii liczb i były badane w różnych kontekstach matematycznych i mistycznych. Funkcja ta może być przydatna w badaniach matematycznych, kryptografii lub po prostu w ogólnym rozwiązywaniu problemów.</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Warunek wstępny:</strong>
+    <ul>
+    <li><i>1 &lt;= n &lt;=<sup>108</sup> </i></li>
+    </ul>
+</p>

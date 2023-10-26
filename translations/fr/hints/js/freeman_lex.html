@@ -1,0 +1,139 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Je n'ai aucune idée de la manière de commencer à résoudre cette mission.
+    </div>
+    <div class="answer">
+        <p>
+            Attrapez une idée 💡! Déclarez une variable pour la somme des diviseurs. Itérer sur les entiers jusqu'à la racine carrée du nombre donné y compris et vérifier chacun d'eux pour être diviseur du nombre donné (le reste de la division doit être égal à 0). Si c'est le cas, ajoutez également le quotient (s'il n'est pas égal au diviseur actuel).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, par quoi dois-je commencer?
+    </div>
+    <div class="answer">
+        <p>
+            Déclarons une variable pour la somme des diviseurs avec la valeur initiale de 1, puisque tous les nombres sont divisibles par 1.
+        </p>
+        <pre class="brush: javascript">
+let sum = 1;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que faire ensuite?
+    </div>
+    <div class="answer">
+        <p>
+            En utilisant <a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for loop</a>, itérer sur les entiers de 2 à la racine carrée du nombre donné, y compris. Pour trouver la valeur entière de la racine carrée, utilisez la méthode <a target="_blank" href="https://www.w3schools.com/jsref/jsref_sqrt.asp">Math.sqrt()</a>.
+        </p>
+        <pre class="brush: javascript">
+for (let i = 2; i <= Math.sqrt(n); i++) {...}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'ai encore besoin d'un indice.
+    </div>
+    <div class="answer">
+        <p>
+            Maintenant, à l'intérieur de la boucle, vous devez calculer le quotient et le reste de la division du nombre donné et de l'entier courant <b class="code">i</b>. 
+        </p>
+        <pre class="brush: javascript">
+const quot = n / i, rem = n % i;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que faire avec ces valeurs?
+    </div>
+    <div class="answer">
+        <p>
+            Si le reste est <b class="code">rem == 0</b> (ou <b class="code">!rem</b>), cela signifie que le nombre <b class="code">n</b> est divisible par l'entier <b class="code">i</b>. Ainsi, <b class="code">i</b> est un diviseur de <b class="code">n</b> et vous devez l'ajouter à la somme des diviseurs <b class="code">sum</b>.  
+        </p>
+        <pre class="brush: javascript">
+if (!rem) {
+    sum += i;
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        C'est tout?
+    </div>
+    <div class="answer">
+        <p>
+            Dans ce cas (<b class="code">not rem</b>), vous devez également ajouter le quotient <b class="code">quot</b> à la somme des diviseurs, car nous ne vérifions pas tous les entiers jusqu'au nombre, mais seulement jusqu'à la racine carrée. Pour éviter d'ajouter le même diviseur (lorsque quotient == i), faites une vérification.
+        </p>
+        <pre class="brush: javascript">
+if (i!== quot) sum += quot;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Alors, à quoi devrait ressembler ma solution finale?
+    </div>
+    <div class="answer">
+        <p>
+            Il vous suffit de joindre tous les indices précédents, de renvoyer le résultat de la comparaison entre la somme des diviseurs et le nombre d'origine et d'envelopper votre code dans une expression de fonction. Il est fortement recommandé d'utiliser des indications de type pour les données d'entrée et de sortie.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isPerfect(n: number): boolean {
+
+    let sum = 1;  
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+        const quot = n / i, rem = n % i;
+        if (!rem) {
+            sum += i;
+            if (i!== quot) sum += quot;
+        }
+    }
+    return sum === n;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Montrez-moi d'autres solutions!<br />
+        parce que je veux être un vrai 🥇 Javascript Hero!
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            Convertissez un nombre en un tableau de son étendue et réduisez-le en ajoutant les diviseurs appropriés.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isPerfect(n: number): boolean {
+
+    const sum = [...Array(n).keys()]
+    .reduce((a, b) => a + (n%b == 0? b: 0), 0);
+
+    return sum == n;
+}
+        </pre>
+        </div>
+        <p>Cliquez sur <b>Best Solutions</b> dans le menu mission et découvrez de nombreuses autres solutions intéressantes!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Merci beaucoup! Je comprends mieux maintenant! Tout fonctionne bien!
+    </div>
+    <div class="answer">
+        Heureux de l'apprendre 👍!
+    </div>
+</div>
+</body>

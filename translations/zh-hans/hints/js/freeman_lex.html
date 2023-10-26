@@ -1,0 +1,139 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这个任务。
+    </div>
+    <div class="answer">
+        <p>
+            给你个建议💡！为除数之和声明一个变量。遍历整数，直到给定数的平方根，并检查每个整数是否是给定数的除数（除法的余数必须等于 0）。如果是，则还要加上商（如果商不等于当前除数）。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        好吧，我应该从哪里开始呢？
+    </div>
+    <div class="answer">
+        <p>
+            让我们为除数之和声明一个变量，初始值为 1，因为每个数字都能被 1 整除。
+        </p>
+        <pre class="brush: javascript">
+let sum = 1;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        下一步该怎么做？
+    </div>
+    <div class="answer">
+        <p>
+            使用<a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for loop</a> 遍历从 2 到给定数字平方根的整数，包括。使用<a target="_blank" href="https://www.w3schools.com/jsref/jsref_sqrt.asp">Math.sqrt()</a> 方法查找平方根的整数值。
+        </p>
+        <pre class="brush: javascript">
+for (let i = 2; i <= Math.sqrt(n); i++) {...}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我仍然需要提示。
+    </div>
+    <div class="answer">
+        <p>
+            现在，在循环内部，你需要计算给定数字和当前整数除法的商和余数<b class="code">i</b> 。 
+        </p>
+        <pre class="brush: javascript">
+const quot = n / i, rem = n % i;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何处理这些值？
+    </div>
+    <div class="answer">
+        <p>
+            那么，如果余数是<b class="code">rem == 0</b> （或<b class="code">!rem</b> ），这意味着数字<b class="code">n</b> 可以被整数<b class="code">i</b> 整除。因此，<b class="code">i</b> 是<b class="code">n</b> 的除数，你需要把它加到除数之和<b class="code">sum</b> 中。  
+        </p>
+        <pre class="brush: javascript">
+if (!rem) {
+    sum += i;
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        就这些吗？
+    </div>
+    <div class="answer">
+        <p>
+            在这种情况下 (<b class="code">not rem</b>)，你还需要把商<b class="code">quot</b> 加到除数之和上，因为我们检查的不是直到数为止的所有整数，而只是直到平方根为止的整数。为了避免加入相同的除数（当商 == i 时），请进行检查。
+        </p>
+        <pre class="brush: javascript">
+if (i!== quot) sum += quot;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        那么，我的最终解决方案应该是怎样的呢？
+    </div>
+    <div class="answer">
+        <p>
+            您只需将之前的所有提示连接起来，返回被除数和原数的比较结果，然后将代码封装成函数表达式即可。强烈建议对输入和输出数据使用类型提示。
+        </p>
+        <p>以下是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isPerfect(n: number): boolean {
+
+    let sum = 1;  
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+        const quot = n / i, rem = n % i;
+        if (!rem) {
+            sum += i;
+            if (i!== quot) sum += quot;
+        }
+    }
+    return sum === n;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        向我展示更多解决方案！<br />
+        因为我想成为真正的 🥇 Javascript 英雄！
+    </div>
+    <div class="answer">
+        <p>当然，抓紧时间！</p>
+        <p>
+            将数字转换为其范围内的数组，并用适当的除数将其缩小。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isPerfect(n: number): boolean {
+
+    const sum = [...Array(n).keys()]
+    .reduce((a, b) => a + (n%b == 0? b: 0), 0);
+
+    return sum == n;
+}
+        </pre>
+        </div>
+        <p>点击任务菜单<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        谢谢！我现在知道并理解得更多了！一切正常！
+    </div>
+    <div class="answer">
+        很高兴听到这个消息 👍！
+    </div>
+</div>
+</body>

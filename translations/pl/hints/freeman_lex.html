@@ -1,0 +1,150 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Nie mam pojęcia, jak zacząć rozwiązywać tę misję.
+    </div>
+    <div class="answer">
+        <p>
+            Proszę złapać pomysł 💡! Proszę zadeklarować zmienną dla sumy dzielników. Iterujemy po liczbach całkowitych aż do pierwiastka kwadratowego z podanej liczby włącznie i sprawdzamy, czy każda z nich jest dzielnikiem podanej liczby (reszta z dzielenia musi być równa 0). Jeśli tak - proszę dodać również iloraz (jeśli nie jest równy bieżącemu dzielnikowi).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, od czego powinienem zacząć?
+    </div>
+    <div class="answer">
+        <p>
+            Zadeklarujmy zmienną dla sumy dzielników z wartością początkową 1, ponieważ każda liczba jest podzielna przez 1.
+        </p>
+        <pre class="brush: python">
+sum_divisors = 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Co zrobić dalej?
+    </div>
+    <div class="answer">
+        <p>
+            Używając <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a> proszę iterować po <a target="_blank" href="https://www.w3schools.com/python/ref_func_range.asp">range</a> liczb całkowitych od 2 do pierwiastka kwadratowego z podanej liczby włącznie. Aby znaleźć całkowitą wartość pierwiastka kwadratowego, proszę użyć funkcji <a target="_blank" href="v">int()</a>.
+        </p>
+        <pre class="brush: python">
+for i in range(2, int(n**0.5) + 1):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nadal potrzebuję podpowiedzi.
+    </div>
+    <div class="answer">
+        <p>
+            Teraz wewnątrz pętli należy obliczyć iloraz i resztę z dzielenia podanej liczby i bieżącej liczby całkowitej <b class="code">i</b>. Proszę użyć funkcji <a target="_blank" href="https://www.w3schools.com/python/ref_func_divmod.asp">divmod()</a>. 
+        </p>
+        <pre class="brush: python">
+quot, rem = divmod(n, i)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Co zrobić z tymi wartościami?
+    </div>
+    <div class="answer">
+        <p>
+            Cóż, jeśli reszta <b class="code">rem == 0</b> (lub <b class="code">not rem</b>), oznacza to, że liczba <b class="code">n</b> jest podzielna przez liczbę całkowitą <b class="code">i</b>. Zatem liczba <b class="code">i</b> jest dzielnikiem liczby <b class="code">n</b> i należy dodać ją do sumy dzielników liczby <b class="code">sum_divisors</b>.  
+        </p>
+        <pre class="brush: python">
+if not rem:
+    sum_divisors += i
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Czy to wszystko?
+    </div>
+    <div class="answer">
+        <p>
+            W tym przypadku (<b class="code">not rem</b>) musi Pan również dodać iloraz <b class="code">quot</b> do sumy dzielników, ponieważ sprawdzamy nie wszystkie liczby całkowite aż do liczby, ale tylko do pierwiastka kwadratowego. Aby uniknąć dodawania tego samego dzielnika (gdy iloraz == i), proszę sprawdzić.
+        </p>
+        <pre class="brush: python">
+if i!= quot: 
+    sum_divisors += quot
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak powinno wyglądać moje ostateczne rozwiązanie?
+    </div>
+    <div class="answer">
+        <p>
+            Wystarczy połączyć wszystkie poprzednie podpowiedzi, zwrócić wynik porównania sumy dzielników i oryginalnej liczby oraz zawinąć kod w wyrażenie funkcyjne. Używanie podpowiedzi typu dla danych wejściowych i wyjściowych jest wysoce zalecane.
+        </p>
+        <p>Poniżej znajduje się całe rozwiązanie:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_perfect(n: int) -> bool:
+
+    sum_divisors = 1
+    for i in range(2, int(n**0.5) + 1):
+        quot, rem = divmod(n, i)
+        if not rem:
+            sum_divisors += i
+            if i!= quot: 
+                sum_divisors += quot
+                
+    return sum_divisors == n
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Proszę pokazać mi więcej rozwiązań!<br />
+        bo chcę być prawdziwą 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Jasne, proszę łapać!</p>
+        <p>
+            Proszę użyć generatora z warunkiem jako argumentu funkcji <b class="code">sum()</b>.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_perfect(n: int) -> bool:
+
+    return sum(i for i in range(1, n) if not n % i) == n
+        </pre>
+        </div>
+        <p>
+            Użycie set upraszcza nasz kod, ponieważ set przechowuje tylko unikalne elementy.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_perfect(n: int) -> bool:
+
+    divisors = {1}
+    for i in range(2, int(n**0.5) + 1):
+        quot, rem = divmod(n, i)
+        if not rem:
+            divisors |= {quot, i}
+
+    return sum(divisors) == n
+        </pre>
+        </div>
+        <p>Proszę kliknąć <b>Best Solutions</b> w menu misji i zobaczyć wiele innych ciekawych rozwiązań!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Dzięki! Teraz wiem i rozumiem więcej! Wszystko działa jak należy!
+    </div>
+    <div class="answer">
+        Miło mi to słyszeć 👍!
+    </div>
+</div>
+</body>

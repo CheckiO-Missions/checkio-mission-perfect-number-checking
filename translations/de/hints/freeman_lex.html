@@ -1,0 +1,150 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.
+    </div>
+    <div class="answer">
+        <p>
+            Haben Sie eine Idee 💡! Deklarieren Sie eine Variable für die Summe der Divisoren. Iterieren Sie über die ganzen Zahlen bis zur Quadratwurzel der gegebenen Zahl und prüfen Sie, ob jede dieser Zahlen ein Divisor der gegebenen Zahl ist (der Rest der Division muss gleich 0 sein). Wenn ja - addieren Sie auch den Quotienten (wenn er nicht gleich dem aktuellen Divisor ist).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, womit soll ich beginnen?
+    </div>
+    <div class="answer">
+        <p>
+            Lassen Sie uns eine Variable für die Summe der Teiler mit dem Anfangswert 1 deklarieren, da jede Zahl durch 1 teilbar ist.
+        </p>
+        <pre class="brush: python">
+sum_divisors = 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was ist als nächstes zu tun?
+    </div>
+    <div class="answer">
+        <p>
+            Mit <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a> iterieren Sie über die <a target="_blank" href="https://www.w3schools.com/python/ref_func_range.asp">range</a> von ganzen Zahlen von 2 bis zur Quadratwurzel der angegebenen Zahl einschließlich. Um den ganzzahligen Wert der Quadratwurzel zu ermitteln, verwenden Sie die Funktion <a target="_blank" href="v">int()</a>.
+        </p>
+        <pre class="brush: python">
+for i in range(2, int(n**0.5) + 1):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich brauche noch einen Hinweis.
+    </div>
+    <div class="answer">
+        <p>
+            Jetzt müssen Sie innerhalb der Schleife den Quotienten und den Rest aus der Division der gegebenen Zahl und der aktuellen ganzen Zahl <b class="code">i</b> berechnen. Verwenden Sie die Funktion <a target="_blank" href="https://www.w3schools.com/python/ref_func_divmod.asp">divmod()</a>. 
+        </p>
+        <pre class="brush: python">
+quot, rem = divmod(n, i)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was tun Sie mit diesen Werten?
+    </div>
+    <div class="answer">
+        <p>
+            Nun, wenn der Rest <b class="code">rem == 0</b> (oder <b class="code">not rem</b>) ist, bedeutet das, dass die Zahl <b class="code">n</b> durch die ganze Zahl <b class="code">i</b> teilbar ist. Also ist <b class="code">i</b> ein Divisor von <b class="code">n</b> und Sie müssen ihn zur Summe der Divisoren <b class="code">sum_divisors</b> addieren.  
+        </p>
+        <pre class="brush: python">
+if not rem:
+    sum_divisors += i
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ist das alles?
+    </div>
+    <div class="answer">
+        <p>
+            In diesem Fall (<b class="code">not rem</b>) müssen Sie auch den Quotienten <b class="code">quot</b> zur Summe der Divisoren hinzufügen, da wir nicht alle ganzen Zahlen bis zur Zahl prüfen, sondern nur bis zur Quadratwurzel. Um zu vermeiden, dass Sie denselben Divisor hinzufügen (wenn Quotient == i), machen Sie eine Prüfung.
+        </p>
+        <pre class="brush: python">
+if i!= quot: 
+    sum_divisors += quot
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie sollte also meine endgültige Lösung aussehen?
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen nur alle vorherigen Hinweise verbinden, das Ergebnis des Vergleichs der Summe der Divisoren und der ursprünglichen Zahl zurückgeben und Ihren Code in einen Funktionsausdruck verpacken. Die Verwendung von Typ-Hinweisen für Eingabe- und Ausgabedaten wird dringend empfohlen.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_perfect(n: int) -> bool:
+
+    sum_divisors = 1
+    for i in range(2, int(n**0.5) + 1):
+        quot, rem = divmod(n, i)
+        if not rem:
+            sum_divisors += i
+            if i!= quot: 
+                sum_divisors += quot
+                
+    return sum_divisors == n
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Zeigen Sie mir mehr Lösungen!<br />
+        denn ich möchte ein echter 🥇 Python Ninnjaa sein!
+    </div>
+    <div class="answer">
+        <p>Klar, schnapp sie dir!</p>
+        <p>
+            Verwenden Sie Generator mit Bedingung als Argument der Funktion <b class="code">sum()</b>.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_perfect(n: int) -> bool:
+
+    return sum(i for i in range(1, n) if not n % i) == n
+        </pre>
+        </div>
+        <p>
+            Die Verwendung von set vereinfacht unseren Code, da set nur eindeutige Elemente enthält.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_perfect(n: int) -> bool:
+
+    divisors = {1}
+    for i in range(2, int(n**0.5) + 1):
+        quot, rem = divmod(n, i)
+        if not rem:
+            divisors |= {quot, i}
+
+    return sum(divisors) == n
+        </pre>
+        </div>
+        <p>Klicken Sie auf <b>Best Solutions</b> im Menü Mission und sehen Sie sich viele andere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert bestens!
+    </div>
+    <div class="answer">
+        Freut mich zu hören 👍!
+    </div>
+</div>
+</body>

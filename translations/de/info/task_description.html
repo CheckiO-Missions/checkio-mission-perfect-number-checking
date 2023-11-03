@@ -1,0 +1,40 @@
+<!-- Describe task in general -->
+
+<p>
+    Eine perfekte Zahl ist eine positive ganze Zahl, die gleich der Summe ihrer eigenen Teiler ist, mit Ausnahme ihrer selbst. Zum Beispiel ist 28 eine perfekte Zahl, denn ihre Teiler sind 1, 2, 4, 7 und 14 und ihre Summe ist 28. 
+</p>
+
+<!-- <p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
+</p> -->
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Eingabe:</strong> Ganzzahl <span>({% if is_js %}number{% else %}int{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Ausgabe:</strong> Logischer Wert <span>(bool{% if is_js %}ean{% endif %})</span>. 
+</p>
+
+<p>
+    <strong>Beispiele:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<p class="for_info_only">
+    <strong>Wie sie verwendet wird:</strong>
+    <i>perfekte Zahlen haben eine historische Bedeutung in der Zahlentheorie und wurden in verschiedenen mathematischen und mystischen Kontexten untersucht. Diese Funktion könnte in der mathematischen Forschung, der Kryptographie oder bei allgemeinen Problemlösungen nützlich sein.</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Vorbedingung:</strong>
+    <ul>
+    <li><i>1 &lt;= n &lt;=<sup>108</sup> </i></li>
+    </ul>
+</p>
